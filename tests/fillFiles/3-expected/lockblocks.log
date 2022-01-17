@@ -1,0 +1,8 @@
+[
+  {
+    "type": "action",
+    "operation": "writeLogFile",
+    "message": "Saving log to: ./tests/fillFiles/4-results/lockblocks.log",
+    "path": "./tests/fillFiles/4-results/lockblocks.log"
+  }
+]

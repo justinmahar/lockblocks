@@ -1,0 +1,9 @@
+renameFiles:
+  - from: old-named-config.json
+    to: renamed-config.json
+  - from: old-named-dir
+    to: renamed-dir
+  - from: src/prev
+    to: src/new
+  - from: src/another
+    to: src-new/another

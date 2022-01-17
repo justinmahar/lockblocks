@@ -1,0 +1,16 @@
+setting1: test1 default
+setting2: test2 default
+setting3: test3 default
+setting4: test4 default
+setting5: test5 default
+setting6: test6 default
+updateMe:
+  val1: This is the first value
+  val2: 123
+  val3: [1, 2, 3]
+newName: Default value of newName
+nestedObject:
+  hi: hello! I should persist
+  yo: This should persist, too
+newNestedObject:
+  renameMe: Default value for this

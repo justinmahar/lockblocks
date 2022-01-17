@@ -1,0 +1,32 @@
+[
+  {
+    "type": "action",
+    "operation": "replaceFiles",
+    "message": "Replacing: ./tests/replaceFiles/1-origin/lockblocks.yml -> ./tests/replaceFiles/4-results/lockblocks.yml",
+    "fileType": "file"
+  },
+  {
+    "type": "action",
+    "operation": "replaceFiles",
+    "message": "Replacing: ./tests/replaceFiles/1-origin/package.json -> ./tests/replaceFiles/4-results/package.json",
+    "fileType": "file"
+  },
+  {
+    "type": "action",
+    "operation": "replaceFiles",
+    "message": "Replacing: ./tests/replaceFiles/1-origin/src/thing.ts -> ./tests/replaceFiles/4-results/src/thing.ts",
+    "fileType": "file"
+  },
+  {
+    "type": "action",
+    "operation": "replaceFiles",
+    "message": "Replacing: ./tests/replaceFiles/1-origin/src/components -> ./tests/replaceFiles/4-results/src/components",
+    "fileType": "directory"
+  },
+  {
+    "type": "action",
+    "operation": "writeLogFile",
+    "message": "Saving log to: ./tests/replaceFiles/4-results/lockblocks.log",
+    "path": "./tests/replaceFiles/4-results/lockblocks.log"
+  }
+]

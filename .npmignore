@@ -1,0 +1,15 @@
+# Dirs
+.github
+node_modules
+src
+test
+# Files
+.eslintignore
+.eslintrc.js
+.gitattributes
+.gitignore
+.npmignore
+.prettierrc.js
+jest.config.js
+package-lock.json
+tsconfig.json

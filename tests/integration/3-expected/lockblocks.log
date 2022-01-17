@@ -1,0 +1,110 @@
+[
+  {
+    "type": "info",
+    "operation": "lockblocks",
+    "message": "Excluding paths: .cache, .git, .github, node_modules, public, static, core-sync/ignored.ts"
+  },
+  {
+    "type": "action",
+    "operation": "renameFiles",
+    "message": "Renaming: ./tests/integration/4-results/core-sync/oldname-file.ts -> ./tests/integration/4-results/core-sync/newname-file.ts",
+    "fileType": "file"
+  },
+  {
+    "type": "action",
+    "operation": "renameFiles",
+    "message": "Renaming: ./tests/integration/4-results/core-sync/Creature.ts -> ./tests/integration/4-results/core-sync/models/Animal.ts",
+    "fileType": "file"
+  },
+  {
+    "type": "action",
+    "operation": "renameFiles",
+    "message": "Renaming: ./tests/integration/4-results/old-named-config.json -> ./tests/integration/4-results/renamed-config.json",
+    "fileType": "file"
+  },
+  {
+    "type": "action",
+    "operation": "renameFiles",
+    "message": "Renaming: ./tests/integration/4-results/old-named-dir -> ./tests/integration/4-results/renamed-dir",
+    "fileType": "directory"
+  },
+  {
+    "type": "action",
+    "operation": "replaceFiles",
+    "message": "Replacing: ./tests/integration/1-origin/.node-version -> ./tests/integration/4-results/.node-version",
+    "fileType": "file"
+  },
+  {
+    "type": "action",
+    "operation": "replaceFiles",
+    "message": "Replacing: ./tests/integration/1-origin/core -> ./tests/integration/4-results/core",
+    "fileType": "directory"
+  },
+  {
+    "type": "action",
+    "operation": "fillFiles",
+    "message": "Filling in missing directory: ./tests/integration/4-results/core-sync/new-file.ts",
+    "fileType": "directory"
+  },
+  {
+    "type": "action",
+    "operation": "fillFiles",
+    "message": "Filling in missing file: ./tests/integration/4-results/settings/fill.yml",
+    "fileType": "file"
+  },
+  {
+    "type": "action",
+    "operation": "fillFiles",
+    "message": "Filling in missing file: ./tests/integration/4-results/important-config.json",
+    "fileType": "file"
+  },
+  {
+    "type": "action",
+    "operation": "deleteFiles",
+    "message": "Deleting file: ./tests/integration/4-results/delete.me",
+    "fileType": "file"
+  },
+  {
+    "type": "action",
+    "operation": "deleteFiles",
+    "message": "Deleting file: ./tests/integration/4-results/core-sync/delete-2.also.me",
+    "fileType": "file"
+  },
+  {
+    "type": "action",
+    "operation": "deleteFiles",
+    "message": "Deleting directory: ./tests/integration/4-results/delete-this-dir",
+    "fileType": "directory"
+  },
+  {
+    "type": "warn",
+    "operation": "replaceCodeBlocks",
+    "message": "Couldn't find code block [missing-from-origin] in origin file ./tests/integration/1-origin/core-sync/test.ts. Please check if the code block was removed."
+  },
+  {
+    "type": "warn",
+    "operation": "replaceCodeBlocks",
+    "message": "Expected code block(s) [missing-from-target] were missing from the target file: ./tests/integration/4-results/core-sync/test.ts. If these were removed intentionally, ignore this warning."
+  },
+  {
+    "type": "action",
+    "operation": "replaceCodeBlocks",
+    "message": "Replacing code blocks: [1], [2], [3] in ./tests/integration/4-results/core-sync/test.ts."
+  },
+  {
+    "type": "action",
+    "operation": "updateJson",
+    "message": "Updating JSON file: ./tests/integration/4-results/package.json"
+  },
+  {
+    "type": "action",
+    "operation": "updateYaml",
+    "message": "Updating YAML file: ./tests/integration/4-results/settings/settings.yml"
+  },
+  {
+    "type": "action",
+    "operation": "writeLogFile",
+    "message": "Saving log to: ./tests/integration/4-results/lockblocks.log",
+    "path": "./tests/integration/4-results/lockblocks.log"
+  }
+]

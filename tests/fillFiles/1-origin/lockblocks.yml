@@ -1,0 +1,8 @@
+renameFiles: []
+replaceFiles: []
+fillFiles: []
+deleteFiles: []
+excludePaths: []
+updateJson: []
+updateYaml: []
+log: true

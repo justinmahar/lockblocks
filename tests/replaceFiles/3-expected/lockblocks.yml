@@ -1,0 +1,12 @@
+renameFiles: []
+replaceFiles:
+  - lockblocks.yml
+  - package.json
+  - src/thing.ts
+  - src/components
+fillFiles: []
+deleteFiles: []
+excludePaths: []
+updateJson: []
+updateYaml: []
+log: true

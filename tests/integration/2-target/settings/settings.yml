@@ -1,0 +1,14 @@
+setting1: test1 changed
+setting2: test2 changed
+setting3: test3 changed
+setting4: test4 changed
+setting5: test5 changed
+setting6: test6 changed
+updateMe:
+  customVal: This is a custom value SHOULD-PERSIST
+deleteMe: SHOULD-DELETE
+oldName: This should be renamed to newName (SHOULD-PERSIST)
+nestedObject:
+  hi: hello! I should persist
+  renameMe: This value should be renamed
+  yo: This should persist, too

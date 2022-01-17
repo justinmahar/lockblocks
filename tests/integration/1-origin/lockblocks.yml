@@ -1,0 +1,61 @@
+renameFiles:
+  - from: old-named-config.json
+    to: renamed-config.json
+  - from: old-named-dir
+    to: renamed-dir
+replaceFiles:
+  - .node-version
+  - core
+fillFiles:
+  - core-sync
+  - target: settings/fill.yml
+  - origin: important-config.json
+  - already-present-config.json
+deleteFiles:
+  - delete.me
+  - core-sync/delete-2.also.me
+  - delete-this-dir
+excludePaths:
+  - .cache
+  - .git
+  - .github
+  - node_modules
+  - public
+  - static
+  - core-sync/ignored.ts
+updateJson:
+  - path: package.json
+    root:
+      fill: true
+    renameFields:
+      - from: oldName
+        to: newName
+    updateFields:
+      - key: version
+        as: coreVersion
+        merge: true
+      - key: scripts
+        merge: true
+      - key: dependencies
+        merge: true
+      - key: devDependencies
+        merge: true
+    deleteFields:
+      - scripts.remove
+updateYaml:
+  - path: settings/settings.yml
+    root:
+      fill: true
+    renameFields:
+      - from: oldName
+        to: newName
+      - from: nestedObject.renameMe
+        to: newNestedObject.renameMe
+      - from: nonExistent
+        to: nonExistent2
+    updateFields:
+      - key: updateMe
+        merge: true
+    deleteFields:
+      - deleteMe
+log: true

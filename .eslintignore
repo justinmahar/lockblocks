@@ -1,0 +1,4 @@
+# Directories to ignore
+dist
+node_modules
+# Don't ignore (prefix with !)

@@ -1,0 +1,67 @@
+{
+  "name": "lockblocks",
+  "version": "0.0.6",
+  "author": "Justin Mahar <contact@justinmahar.com>",
+  "description": "Node.js utility for updating projects created from starters.",
+  "homepage": "https://justinmahar.github.io/lockblocks/",
+  "main": "./dist/main.js",
+  "bin": {
+    "lockblocks": "./bin/index.js"
+  },
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "rm -rf ./dist && tsc",
+    "watch": "tsc --watch",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "lint": "eslint '*/**/*.{js,jsx,ts,tsx}' --quiet --fix",
+    "start": "npm run test",
+    "preship": "npm run build && git add dist && git diff-index --quiet HEAD || git commit -m \"Build, version, and publish.\" && npm version patch -m \"Build, version, and publish.\"",
+    "ship": "npm publish --access public",
+    "postship": "git push"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/justinmahar/lockblocks.git"
+  },
+  "bugs": {
+    "url": "https://github.com/justinmahar/lockblocks/issues"
+  },
+  "keywords": [
+    "starter",
+    "updater",
+    "synchronize",
+    "synchronization",
+    "dependency",
+    "dependencies",
+    "maintenance",
+    "lock blocks"
+  ],
+  "dependencies": {
+    "fs-extra": "^10.0.0",
+    "istextorbinary": "^6.0.0",
+    "json-format": "^1.0.1",
+    "jsonfile": "^6.1.0",
+    "read-yaml": "^1.1.0",
+    "replace-in-file": "^6.3.2",
+    "write-yaml-file": "^4.2.0"
+  },
+  "devDependencies": {
+    "@types/fs-extra": "^9.0.13",
+    "@types/jest": "^27.0.3",
+    "@types/jsonfile": "^6.0.1",
+    "@typescript-eslint/eslint-plugin": "^5.6.0",
+    "@typescript-eslint/parser": "^5.6.0",
+    "dir-compare": "^4.0.0",
+    "eslint": "^8.4.1",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-react": "^7.27.1",
+    "eslint-plugin-react-hooks": "^4.3.0",
+    "jest": "^27.4.5",
+    "prettier": "^2.5.1",
+    "ts-jest": "^27.1.2",
+    "typescript": "^4.5.3"
+  }
+}
