@@ -489,7 +489,8 @@ exports.updateYaml = updateYaml;
 var writeLogFile = function (allEvents, targetDir, log) {
     var operation = 'writeLogFile';
     var events = [];
-    if (log) {
+    // If log is truthy, or was unspecified (log by default)
+    if (log || typeof log === 'undefined') {
         var logFileName = typeof log === 'string' ? log : DEFAULT_LOG_FILE_NAME;
         var logFilePath = "".concat(targetDir, "/").concat(logFileName);
         if (fs_extra_1.default.pathExistsSync(logFilePath)) {
