@@ -445,6 +445,8 @@ The `block` part of this tag should be a unique ID that names that block in the 
 
 The IDs need only be unique for each given file (you can use the same ID in multiple files).
 
+You can also lock a single line with the following: `[lock:block/]`
+
 ```ts
 // [lock:block]
 // Code
@@ -457,6 +459,10 @@ The IDs need only be unique for each given file (you can use the same ID in mult
 // More code
 // ...
 // [/lock:another-block]
+
+// ...
+
+// Single line locked // [lock:single-line/]
 ```
 
 #### Rename File Tags
@@ -481,7 +487,7 @@ Add the `[lock-ignore/]` tag to tell LockBlocks to ignore the line and any other
 
 In the target project, simply remove a tag from the file to prevent LockBlocks from making that update.
 
-For instance, you can remove the `[lock:block] ... [/lock:block]` tags around a block of code to "eject" from the starter. That code block will no longer by updated.
+For instance, you can remove the `[lock:block] ... [/lock:block]` tags around a block of code to "eject" from the starter. That code block will no longer be updated.
 
 ---
 
