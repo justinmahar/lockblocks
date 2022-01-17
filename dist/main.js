@@ -13,7 +13,7 @@ var main = function () {
             var verbose = userArgs.slice(2).includes('--verbose');
             for (var _i = 0, events_1 = events; _i < events_1.length; _i++) {
                 var currEvent = events_1[_i];
-                var output = "".concat(currEvent.operation, " | ").concat(currEvent.type, ": ").concat(currEvent.message);
+                var output = "".concat(currEvent.type, ": [").concat(currEvent.operation, "] ").concat(currEvent.message);
                 switch (currEvent.type) {
                     case 'warn':
                         console.warn(output);
