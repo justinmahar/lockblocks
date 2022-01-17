@@ -184,7 +184,7 @@ Files, directories, and code blocks are transferred from the origin directory to
 
 The origin directory must contain a config file called `lockblocks.yml` for LockBlocks to run. See below for configuration options.
 
-Pass the `--verbose` arg to print `info` and `action` type events. Pass `--silent` to silence all output.
+By default, `warn` and `error` level events will be printed to the console. Pass the `--verbose` arg to print `info` and `action` type events as well. Pass `--silent` to silence all output.
 
 ### Config (lockblocks.yml)
 
