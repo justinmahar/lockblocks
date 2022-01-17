@@ -11,7 +11,7 @@ const main = () => {
     if (!silent) {
       const verbose = userArgs.slice(2).includes('--verbose');
       for (const currEvent of events) {
-        const output = `${currEvent.operation} | ${currEvent.type}: ${currEvent.message}`;
+        const output = `${currEvent.type}: [${currEvent.operation}] ${currEvent.message}`;
         switch (currEvent.type) {
           case 'warn':
             console.warn(output);
