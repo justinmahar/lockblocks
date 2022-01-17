@@ -108,7 +108,6 @@ updateJson:
     updateFields:
       - key: version
         as: starterVersion
-        replace: true
       - key: scripts
         merge: true
       - key: dependencies
