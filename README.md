@@ -346,7 +346,7 @@ The value is an array of `ConfigUpdate`s. These define how a config file should 
 `FieldUpdate` is an object with the following fields:
 - `key: string` - The key of the field to update. Supports dot notation for nested fields (e.g. my.field.name)
 - `as: string` - *Optional.* When specified, this field name will be used in the target. Supports dot notation for nested fields (e.g. new.key.title).
-- Any of the `FieldUpdateOptions` fields.
+- Any of the `FieldUpdateOptions` fields. These only apply if the field is an object. Otherwise, it is simply replaced.
 
 `Reassignment` is an object with the following fields:
 - `from: string` - The previous field name.
