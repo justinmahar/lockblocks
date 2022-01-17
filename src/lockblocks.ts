@@ -600,7 +600,8 @@ export const writeLogFile = (
   const operation = 'writeLogFile';
   const events: LogEvent[] = [];
 
-  if (log) {
+  // If log is truthy, or was unspecified (log by default)
+  if (log || typeof log === 'undefined') {
     const logFileName = typeof log === 'string' ? log : DEFAULT_LOG_FILE_NAME;
     const logFilePath = `${targetDir}/${logFileName}`;
     if (fs.pathExistsSync(logFilePath)) {
