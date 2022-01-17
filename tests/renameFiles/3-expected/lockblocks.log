@@ -1,0 +1,26 @@
+[
+  {
+    "type": "action",
+    "operation": "renameFiles",
+    "message": "Renaming: ./tests/renameFiles/4-results/old-named-config.json -> ./tests/renameFiles/4-results/renamed-config.json",
+    "fileType": "file"
+  },
+  {
+    "type": "action",
+    "operation": "renameFiles",
+    "message": "Renaming: ./tests/renameFiles/4-results/src/prev -> ./tests/renameFiles/4-results/src/new",
+    "fileType": "directory"
+  },
+  {
+    "type": "action",
+    "operation": "renameFiles",
+    "message": "Renaming: ./tests/renameFiles/4-results/src/another -> ./tests/renameFiles/4-results/src-new/another",
+    "fileType": "directory"
+  },
+  {
+    "type": "action",
+    "operation": "writeLogFile",
+    "message": "Saving log to: ./tests/renameFiles/4-results/lockblocks.log",
+    "path": "./tests/renameFiles/4-results/lockblocks.log"
+  }
+]
