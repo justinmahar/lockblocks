@@ -14,6 +14,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.deleteFile = exports.writeLogFile = exports.updateYaml = exports.updateJson = exports.replaceCodeBlocks = exports.deleteFiles = exports.fillFiles = exports.replaceFiles = exports.renameFiles = exports.lockblocks = void 0;
 var fs_extra_1 = __importDefault(require("fs-extra"));
+var dir_compare_1 = require("dir-compare");
 var istextorbinary_1 = require("istextorbinary");
 var json_format_1 = __importDefault(require("json-format"));
 // import readline from 'readline';
@@ -147,31 +148,33 @@ var replaceFiles = function (originDirPath, targetDirPath, items, excludedScanPa
                 destinationIsDir = isDirectory(targetPath);
             }
             catch (e) { }
-            if (!destinationIsDir) {
-                (0, Logging_1.logEvent)(events, Logging_1.LogEventType.action, operation, "Replacing: ".concat(originPath, " -> ").concat(targetPath), {
-                    fileType: 'file',
-                });
-                // Replace file
-                fs_extra_1.default.ensureFileSync(targetPath);
-                fs_extra_1.default.copySync(originPath, targetPath, { overwrite: true });
+            var same = false;
+            var targetFileExists = fs_extra_1.default.pathExistsSync(targetPath);
+            if (targetFileExists) {
+                var comparisonResults = (0, dir_compare_1.compareSync)(originPath, targetPath, { compareContent: true });
+                same = !!(comparisonResults === null || comparisonResults === void 0 ? void 0 : comparisonResults.same);
             }
-            else {
-                // Replace directory
-                var originDirExists = fs_extra_1.default.pathExistsSync(originPath);
-                if (originDirExists) {
+            // Only replace if there are differences or target doesn't exist
+            if ((targetFileExists && !same) || !targetFileExists) {
+                if (!destinationIsDir) {
+                    (0, Logging_1.logEvent)(events, Logging_1.LogEventType.action, operation, "Replacing: ".concat(originPath, " -> ").concat(targetPath), {
+                        fileType: 'file',
+                    });
+                    // Replace file
+                    fs_extra_1.default.ensureFileSync(targetPath);
+                    fs_extra_1.default.copySync(originPath, targetPath, { overwrite: true });
+                }
+                else {
+                    // Replace directory
                     (0, Logging_1.logEvent)(events, Logging_1.LogEventType.action, operation, "Replacing: ".concat(originPath, " -> ").concat(targetPath), {
                         fileType: 'directory',
                     });
-                    // Delete target dir or do nothing if doesn't exist
-                    var targetDirExists = fs_extra_1.default.pathExistsSync(targetPath);
-                    if (targetDirExists) {
+                    // Delete target dir first if it exists
+                    if (targetFileExists) {
                         fs_extra_1.default.rmSync(targetPath, { recursive: true, force: true });
                     }
                     // Recursively copy origin dir to target dir
                     fs_extra_1.default.copySync(originPath, targetPath);
-                }
-                else {
-                    (0, Logging_1.logEvent)(events, Logging_1.LogEventType.warn, operation, "Cannot replace. Origin dir does not exist: ".concat(originPath));
                 }
             }
         }
@@ -205,7 +208,7 @@ var replaceFiles = function (originDirPath, targetDirPath, items, excludedScanPa
                 if (fs_extra_1.default.pathExistsSync(originFilePath) && !isDirectory(originFilePath)) {
                     // Only replace the file if it changed in any way
                     if (fs_extra_1.default.readFileSync(currFile).toString() !== fs_extra_1.default.readFileSync(originFilePath).toString()) {
-                        (0, Logging_1.logEvent)(events, Logging_1.LogEventType.action, operation, "Changed detected. Replacing: ".concat(originFilePath, " -> ").concat(currFile), {
+                        (0, Logging_1.logEvent)(events, Logging_1.LogEventType.action, operation, "Replacing: ".concat(originFilePath, " -> ").concat(currFile), {
                             fileType: 'file',
                         });
                         fs_extra_1.default.copySync(originFilePath, currFile, { overwrite: true });
