@@ -39,6 +39,7 @@
     "lock blocks"
   ],
   "dependencies": {
+    "dir-compare": "^4.0.0",
     "fs-extra": "^10.0.0",
     "istextorbinary": "^6.0.0",
     "json-format": "^1.0.1",
@@ -53,7 +54,6 @@
     "@types/jsonfile": "^6.0.1",
     "@typescript-eslint/eslint-plugin": "^5.6.0",
     "@typescript-eslint/parser": "^5.6.0",
-    "dir-compare": "^4.0.0",
     "eslint": "^8.4.1",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^4.0.0",

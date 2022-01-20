@@ -1,4 +1,5 @@
 import fs from 'fs-extra';
+import { compareSync } from 'dir-compare';
 import { isText } from 'istextorbinary';
 import jsonFormat from 'json-format';
 // import readline from 'readline';
@@ -177,29 +178,32 @@ export const replaceFiles = (
         destinationIsDir = isDirectory(targetPath);
       } catch (e) {}
 
-      if (!destinationIsDir) {
-        logEvent(events, LogEventType.action, operation, `Replacing: ${originPath} -> ${targetPath}`, {
-          fileType: 'file',
-        });
-        // Replace file
-        fs.ensureFileSync(targetPath);
-        fs.copySync(originPath, targetPath, { overwrite: true });
-      } else {
-        // Replace directory
-        const originDirExists = fs.pathExistsSync(originPath);
-        if (originDirExists) {
+      let same = false;
+      const targetFileExists = fs.pathExistsSync(targetPath);
+      if (targetFileExists) {
+        const comparisonResults = compareSync(originPath, targetPath, { compareContent: true });
+        same = !!comparisonResults?.same;
+      }
+      // Only replace if there are differences or target doesn't exist
+      if ((targetFileExists && !same) || !targetFileExists) {
+        if (!destinationIsDir) {
+          logEvent(events, LogEventType.action, operation, `Replacing: ${originPath} -> ${targetPath}`, {
+            fileType: 'file',
+          });
+          // Replace file
+          fs.ensureFileSync(targetPath);
+          fs.copySync(originPath, targetPath, { overwrite: true });
+        } else {
+          // Replace directory
           logEvent(events, LogEventType.action, operation, `Replacing: ${originPath} -> ${targetPath}`, {
             fileType: 'directory',
           });
-          // Delete target dir or do nothing if doesn't exist
-          const targetDirExists = fs.pathExistsSync(targetPath);
-          if (targetDirExists) {
+          // Delete target dir first if it exists
+          if (targetFileExists) {
             fs.rmSync(targetPath, { recursive: true, force: true });
           }
           // Recursively copy origin dir to target dir
           fs.copySync(originPath, targetPath);
-        } else {
-          logEvent(events, LogEventType.warn, operation, `Cannot replace. Origin dir does not exist: ${originPath}`);
         }
       }
     }
@@ -234,15 +238,9 @@ export const replaceFiles = (
         if (fs.pathExistsSync(originFilePath) && !isDirectory(originFilePath)) {
           // Only replace the file if it changed in any way
           if (fs.readFileSync(currFile).toString() !== fs.readFileSync(originFilePath).toString()) {
-            logEvent(
-              events,
-              LogEventType.action,
-              operation,
-              `Changed detected. Replacing: ${originFilePath} -> ${currFile}`,
-              {
-                fileType: 'file',
-              },
-            );
+            logEvent(events, LogEventType.action, operation, `Replacing: ${originFilePath} -> ${currFile}`, {
+              fileType: 'file',
+            });
             fs.copySync(originFilePath, currFile, { overwrite: true });
           }
         }

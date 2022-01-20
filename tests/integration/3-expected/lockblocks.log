@@ -43,25 +43,25 @@
   {
     "type": "action",
     "operation": "replaceFiles",
-    "message": "Changed detected. Replacing: ./tests/integration/1-origin/core-sync/lorem.ts -> ./tests/integration/4-results/core-sync/lorem.ts",
+    "message": "Replacing: ./tests/integration/1-origin/core-sync/lorem.ts -> ./tests/integration/4-results/core-sync/lorem.ts",
     "fileType": "file"
   },
   {
     "type": "action",
     "operation": "replaceFiles",
-    "message": "Changed detected. Replacing: ./tests/integration/1-origin/core-sync/models/Animal.ts -> ./tests/integration/4-results/core-sync/models/Animal.ts",
+    "message": "Replacing: ./tests/integration/1-origin/core-sync/models/Animal.ts -> ./tests/integration/4-results/core-sync/models/Animal.ts",
     "fileType": "file"
   },
   {
     "type": "action",
     "operation": "replaceFiles",
-    "message": "Changed detected. Replacing: ./tests/integration/1-origin/core-sync/newname-file.ts -> ./tests/integration/4-results/core-sync/newname-file.ts",
+    "message": "Replacing: ./tests/integration/1-origin/core-sync/newname-file.ts -> ./tests/integration/4-results/core-sync/newname-file.ts",
     "fileType": "file"
   },
   {
     "type": "action",
     "operation": "replaceFiles",
-    "message": "Changed detected. Replacing: ./tests/integration/1-origin/styles/core.scss -> ./tests/integration/4-results/styles/core.scss",
+    "message": "Replacing: ./tests/integration/1-origin/styles/core.scss -> ./tests/integration/4-results/styles/core.scss",
     "fileType": "file"
   },
   {
