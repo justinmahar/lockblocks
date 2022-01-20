@@ -205,11 +205,10 @@ var replaceFiles = function (originDirPath, targetDirPath, items, excludedScanPa
                 if (fs_extra_1.default.pathExistsSync(originFilePath) && !isDirectory(originFilePath)) {
                     // Only replace the file if it changed in any way
                     if (fs_extra_1.default.readFileSync(currFile).toString() !== fs_extra_1.default.readFileSync(originFilePath).toString()) {
-                        // console.log('Changed detected. Replacing', currFile, 'with', originFilePath);
+                        (0, Logging_1.logEvent)(events, Logging_1.LogEventType.action, operation, "Changed detected. Replacing: ".concat(originFilePath, " -> ").concat(currFile), {
+                            fileType: 'file',
+                        });
                         fs_extra_1.default.copySync(originFilePath, currFile, { overwrite: true });
-                    }
-                    else {
-                        // console.log('No changed detected for: ', currFile);
                     }
                 }
             }

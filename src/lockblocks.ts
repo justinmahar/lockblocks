@@ -234,10 +234,16 @@ export const replaceFiles = (
         if (fs.pathExistsSync(originFilePath) && !isDirectory(originFilePath)) {
           // Only replace the file if it changed in any way
           if (fs.readFileSync(currFile).toString() !== fs.readFileSync(originFilePath).toString()) {
-            // console.log('Changed detected. Replacing', currFile, 'with', originFilePath);
+            logEvent(
+              events,
+              LogEventType.action,
+              operation,
+              `Changed detected. Replacing: ${originFilePath} -> ${currFile}`,
+              {
+                fileType: 'file',
+              },
+            );
             fs.copySync(originFilePath, currFile, { overwrite: true });
-          } else {
-            // console.log('No changed detected for: ', currFile);
           }
         }
       }
