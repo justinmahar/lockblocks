@@ -504,6 +504,7 @@ var writeLogFile = function (allEvents, targetDir, log) {
         };
         try {
             (0, Logging_1.logEvent)(events, Logging_1.LogEventType.action, operation, "Saving log to: ".concat(logFilePath), { path: logFilePath });
+            fs_extra_1.default.ensureFileSync(logFilePath);
             fs_extra_1.default.writeFileSync(logFilePath, (0, json_format_1.default)(__spreadArray(__spreadArray([], allEvents, true), events, true), jsonFormattingConfig) + '\n');
         }
         catch (err) {
