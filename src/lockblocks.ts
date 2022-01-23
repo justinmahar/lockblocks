@@ -617,6 +617,7 @@ export const writeLogFile = (
     };
     try {
       logEvent(events, LogEventType.action, operation, `Saving log to: ${logFilePath}`, { path: logFilePath });
+      fs.ensureFileSync(logFilePath);
       fs.writeFileSync(logFilePath, jsonFormat([...allEvents, ...events], jsonFormattingConfig) + '\n');
     } catch (err) {
       console.error(err);

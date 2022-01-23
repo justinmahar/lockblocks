@@ -58,4 +58,3 @@ updateYaml:
         merge: true
     deleteFields:
       - deleteMe
-log: true

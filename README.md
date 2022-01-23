@@ -74,7 +74,6 @@ In addition, you can specify blocks of code that will be pulled from the starter
     - [Rename File Tags](#rename-file-tags)
     - [Ignore Tag](#ignore-tag)
     - [Tag Ejection](#tag-ejection)
-- [Logging](#logging)
 - [TypeScript](#typescript)
 - [Contributing](#contributing)
 - [⭐ Found It Helpful? Star It!](#-found-it-helpful-star-it)
@@ -127,13 +126,13 @@ To update your project with LockBlocks using a git project as the origin, add th
 
 ```json
 "scripts": {
-  "update": "git clone git@github.com:my-username/my-starter.git ./.lockblocks && lockblocks ./.lockblocks . && rm -rf .lockblocks"
+  "update": "git clone -q git@github.com:my-username/my-starter.git ./.lockblocks && lockblocks ./.lockblocks . --verbose && rm -rf .lockblocks"
 },
 ```
 
 ...where `git@github.com:my-username/my-starter.git` is the location to your starter git project.
 
-This script will clone your project to the `.lockblocks` directory, then run LockBlocks using that dir as the origin and the current directory as the target. The `.lockblocks` directory will then be deleted when finished.
+This script will silently clone your project to the `.lockblocks` directory, then run LockBlocks using that dir as the origin and the current directory as the target. The `.lockblocks` directory will then be deleted when finished.
 
 With this approach, be sure `.lockblocks` is specified in [`excludePaths`](#excludepaths).
 
@@ -143,7 +142,7 @@ To update your project with LockBlocks using an npm package as the origin, add t
 
 ```json
 "scripts": {
-  "update": "npm i my-starter@latest && lockblocks ./node_modules/my-starter ."
+  "update": "npm i my-starter@latest && lockblocks ./node_modules/my-starter . --verbose"
 },
 ```
 
@@ -183,7 +182,7 @@ Files, directories, and code blocks are transferred from the origin directory to
 
 The origin directory must contain a config file called `lockblocks.yml` for LockBlocks to run. See below for configuration options.
 
-By default, `warn` and `error` level events will be printed to the console. Pass the `--verbose` arg to print `info` and `action` type events as well. Pass `--silent` to silence all output.
+By default, `warn` and `error` level events will be printed to the console. Pass the `--verbose` arg to print `info` and `action` type events as well. Pass `--silent` to silence all console output. [Logs](#log) are saved to `lockblocks.log` by default.
 
 ### Config (lockblocks.yml)
 
@@ -218,6 +217,8 @@ renameFiles:
 #### replaceFiles
 
 Specify what files or directories to replace completely with the origin. The target file will be removed, then the origin file will be copied to the target.
+
+Changes will only be made if there are file differences.
 
 Specification:
 
@@ -397,7 +398,9 @@ updateYaml:
 
 #### log
 
-Specify a filename to save the update log to, or `false` to disable logging.
+LockBlocks saves a log of the updates made to `lockblocks.log`, unless otherwise specified with the `log` option.
+
+You can specify a filename to change the output file, or specify `false` to disable logging.
 
 Specification:
 
@@ -405,7 +408,7 @@ Specification:
 log: boolean | string
 ```
 
-If log is not specified or set to `true`, logs will be saved to `lockblocks.log` by default. If set to `false`, no logs will be saved.
+If `log` is not specified, or if `log` is set to `true`, logs will be saved to `lockblocks.log` by default. If set to `false`, no logs will be saved.
 
 Examples:
 
@@ -418,8 +421,19 @@ log: false # No logs will be saved
 ```
 
 ```yaml
-log: updater.log # Logs are saved to this file
+log: logs/updater.log # Logs are saved to this file
 ```
+
+Log levels:
+
+- `action` - Indicates a change to the files in your project.
+- `info` - Indicates helpful information about the execution.
+- `warn` - Indicates a warning that may require your attention.
+- `error` - Indicates an error that occurred during execution.
+
+All file changes are indicated by the `action` log level. These identify actual file changes (write, copy, delete, move) in the target. 
+
+In addition to all `action` log events, you can also use a simple `git status` to confirm which files were modified after an update.
 
 --- 
 
@@ -490,10 +504,6 @@ In the target project, simply remove a tag from the file to prevent LockBlocks f
 For instance, you can remove the `[lock:block] ... [/lock:block]` tags around a block of code to "eject" from the starter. That code block will no longer be updated.
 
 ---
-
-## Logging
-
-LockBlocks saves a log of the updates made to `lockblocks.log`, unless otherwise specified with the [`log`](#log) option.
 
 ## TypeScript
 
