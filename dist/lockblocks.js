@@ -534,7 +534,7 @@ var filterExcludedFiles = function (dirPath, allFiles, excludedPaths, textFilesO
     return allFiles.filter(function (fileName) {
         var relativeFileName = fileName.substring(dirPath.length + 1);
         var excluded = !!excludedPaths.find(function (excludedPath) {
-            return relativeFileName.indexOf(excludedPath) === 0;
+            return relativeFileName === excludedPath || relativeFileName.indexOf("".concat(excludedPath, "/")) === 0;
         });
         if (!excluded && textFilesOnly) {
             excluded = !isTextFile(fileName);

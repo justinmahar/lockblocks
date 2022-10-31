@@ -653,7 +653,7 @@ const filterExcludedFiles = (
   return allFiles.filter((fileName) => {
     const relativeFileName = fileName.substring(dirPath.length + 1);
     let excluded = !!excludedPaths.find((excludedPath) => {
-      return relativeFileName.indexOf(excludedPath) === 0;
+      return relativeFileName === excludedPath || relativeFileName.indexOf(`${excludedPath}/`) === 0;
     });
     if (!excluded && textFilesOnly) {
       excluded = !isTextFile(fileName);
