@@ -173,11 +173,6 @@ export const replaceFiles = (
     }`;
     const originFileExists = fs.pathExistsSync(originPath);
     if (originFileExists) {
-      let destinationIsDir = false;
-      try {
-        destinationIsDir = isDirectory(targetPath);
-      } catch (e) {}
-
       let same = false;
       const targetFileExists = fs.pathExistsSync(targetPath);
       if (targetFileExists) {
@@ -186,7 +181,11 @@ export const replaceFiles = (
       }
       // Only replace if there are differences or target doesn't exist
       if ((targetFileExists && !same) || !targetFileExists) {
-        if (!destinationIsDir) {
+        let originFileIsDir = false;
+        try {
+          originFileIsDir = isDirectory(originPath);
+        } catch (e) {}
+        if (!originFileIsDir) {
           logEvent(events, LogEventType.action, operation, `Replacing: ${originPath} -> ${targetPath}`, {
             fileType: 'file',
           });

@@ -143,11 +143,6 @@ var replaceFiles = function (originDirPath, targetDirPath, items, excludedScanPa
         var targetPath = "".concat(targetDirPath, "/").concat(typeof itemConfig === 'string' ? itemConfig : itemConfig.target || itemConfig.origin);
         var originFileExists = fs_extra_1.default.pathExistsSync(originPath);
         if (originFileExists) {
-            var destinationIsDir = false;
-            try {
-                destinationIsDir = isDirectory(targetPath);
-            }
-            catch (e) { }
             var same = false;
             var targetFileExists = fs_extra_1.default.pathExistsSync(targetPath);
             if (targetFileExists) {
@@ -156,7 +151,12 @@ var replaceFiles = function (originDirPath, targetDirPath, items, excludedScanPa
             }
             // Only replace if there are differences or target doesn't exist
             if ((targetFileExists && !same) || !targetFileExists) {
-                if (!destinationIsDir) {
+                var originFileIsDir = false;
+                try {
+                    originFileIsDir = isDirectory(originPath);
+                }
+                catch (e) { }
+                if (!originFileIsDir) {
                     (0, Logging_1.logEvent)(events, Logging_1.LogEventType.action, operation, "Replacing: ".concat(originPath, " -> ").concat(targetPath), {
                         fileType: 'file',
                     });
