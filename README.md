@@ -11,6 +11,9 @@
   <a href="https://github.com/justinmahar/lockblocks/actions?query=workflow%3ATests">
     <img src="https://github.com/justinmahar/lockblocks/workflows/Tests/badge.svg" alt="Tests Status"/>
   </a>
+  <a href="https://github.com/sponsors/justinmahar" target="_blank" rel="noopener noreferrer">
+    <img src="https://img.shields.io/static/v1?label=Sponsor&message=%E2%9D%A4&logo=GitHub&color=%23fe8e86" alt="Sponsor"/>
+  </a>
 </p>
 
 ## Overview
@@ -46,12 +49,29 @@ In addition, you can specify blocks of code that will be pulled from the starter
 - 🪵 **Verbose logging.**
   - Know exactly what changed and what was updated.
 
+## Donate 
+
+This project is the result of countless hours of work and I really hope it saves you hours of your own precious time.
+
+If this project helped you and you'd like to join others in showing support for the development of this project, I'd be honored if you chose to support the development of this project in one of two ways: by sponsoring me (monthly or one-time), or by buying me a coffee.
+
+<a href="https://github.com/sponsors/justinmahar">
+  <img src="https://justinmahar.github.io/react-kindling/support/sponsor.png" alt="Sponsor via GitHub" height="35" />
+</a> <a href="https://paypal.me/thejustinmahar/5">
+  <img src="https://justinmahar.github.io/react-kindling/support/coffee-1.png" alt="Buy me a coffee" height="35" />
+</a> <a href="https://paypal.me/thejustinmahar/15">
+  <img src="https://justinmahar.github.io/react-kindling/support/coffee-3.png" alt="Buy me 3 coffees" height="35" />
+</a> <a href="https://paypal.me/thejustinmahar/25">
+  <img src="https://justinmahar.github.io/react-kindling/support/coffee-5.png" alt="Buy me 5 coffees" height="35" />
+</a>
+
 ## Table of Contents
 
 - [Overview](#overview)
   - [The Problem](#the-problem)
   - [The Solution](#the-solution)
   - [Features include:](#features-include)
+- [Donate](#donate)
 - [Table of Contents](#table-of-contents)
 - [Installation](#installation)
 - [Quick Start](#quick-start)
