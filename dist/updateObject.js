@@ -12,64 +12,63 @@ var __rest = (this && this.__rest) || function (s, e) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.updateObject = void 0;
-var updateObject = function (originObj, targetObj, rootUpdateOptions, renameFields, updateFields, deleteFields) {
+const updateObject = (originObj, targetObj, rootUpdateOptions, renameFields, updateFields, deleteFields) => {
     // Update the root
     applyFieldOptions(originObj, targetObj, rootUpdateOptions);
     // Rename fields specified
-    renameFields.forEach(function (assignment) {
+    renameFields.forEach((assignment) => {
         if (assignment.from && assignment.to) {
             renameField(targetObj, assignment.from, assignment.to);
         }
     });
     // Update fields specified
-    updateFields.forEach(function (fieldUpdate) {
+    updateFields.forEach((fieldUpdate) => {
         if (fieldUpdate.key) {
-            var originKey = fieldUpdate.key, as = fieldUpdate.as, fieldUpdateOptions = __rest(fieldUpdate, ["key", "as"]);
-            var targetKey = as ? as : originKey;
+            const { key: originKey, as } = fieldUpdate, fieldUpdateOptions = __rest(fieldUpdate, ["key", "as"]);
+            const targetKey = as ? as : originKey;
             updateField(originObj, targetObj, originKey, targetKey, fieldUpdateOptions || {});
         }
     });
     // Delete fields specified
-    deleteFields.forEach(function (fieldToDelete) {
+    deleteFields.forEach((fieldToDelete) => {
         deleteField(targetObj, fieldToDelete);
     });
     return targetObj;
 };
 exports.updateObject = updateObject;
-var applyFieldOptions = function (originObj, targetObj, options) {
-    if (options === void 0) { options = {}; }
-    var originObjKeys = Object.keys(originObj);
-    var targetObjKeys = Object.keys(targetObj);
+const applyFieldOptions = (originObj, targetObj, options = {}) => {
+    const originObjKeys = Object.keys(originObj);
+    const targetObjKeys = Object.keys(targetObj);
     if (options.merge || options.replace) {
-        originObjKeys.forEach(function (key) {
+        originObjKeys.forEach((key) => {
             targetObj[key] = originObj[key];
         });
     }
     if (options.fill) {
-        originObjKeys.forEach(function (key) {
+        originObjKeys.forEach((key) => {
             if (!targetObjKeys.includes(key)) {
                 targetObj[key] = originObj[key];
             }
         });
     }
     if (options.prune || options.replace) {
-        targetObjKeys.forEach(function (key) {
+        targetObjKeys.forEach((key) => {
             if (!originObjKeys.includes(key)) {
                 delete targetObj[key];
             }
         });
     }
 };
-var renameField = function (targetObj, oldName, newName) {
-    var oldFieldHierarchy = oldName.split('.');
-    var newFieldHierarchy = newName.split('.');
-    var oldFieldExists = false;
-    var oldValueParent = targetObj;
-    var oldValue = undefined;
+const renameField = (targetObj, oldName, newName) => {
+    const oldFieldHierarchy = oldName.split('.');
+    const newFieldHierarchy = newName.split('.');
+    let oldFieldExists = false;
+    let oldValueParent = targetObj;
+    let oldValue = undefined;
     // Establish that the old field exists, and get its value
-    for (var i = 0; i < oldFieldHierarchy.length; i++) {
-        var isLast = i === oldFieldHierarchy.length - 1;
-        var currField = oldFieldHierarchy[i];
+    for (let i = 0; i < oldFieldHierarchy.length; i++) {
+        const isLast = i === oldFieldHierarchy.length - 1;
+        const currField = oldFieldHierarchy[i];
         if (!isLast) {
             if (typeof oldValueParent[currField] === 'object') {
                 oldValueParent = oldValueParent[currField];
@@ -92,10 +91,10 @@ var renameField = function (targetObj, oldName, newName) {
         }
     }
     if (oldFieldExists) {
-        var targetValueParent = targetObj;
-        for (var i = 0; i < newFieldHierarchy.length; i++) {
-            var isLast = i === newFieldHierarchy.length - 1;
-            var currField = newFieldHierarchy[i];
+        let targetValueParent = targetObj;
+        for (let i = 0; i < newFieldHierarchy.length; i++) {
+            const isLast = i === newFieldHierarchy.length - 1;
+            const currField = newFieldHierarchy[i];
             if (!isLast) {
                 if (typeof targetValueParent[currField] === 'undefined') {
                     targetValueParent[currField] = {};
@@ -105,8 +104,8 @@ var renameField = function (targetObj, oldName, newName) {
                     targetValueParent = targetValueParent[currField];
                 }
                 else {
-                    var obsoleteValue = targetValueParent[currField];
-                    targetValueParent["__obsolete__".concat(currField)] = obsoleteValue;
+                    const obsoleteValue = targetValueParent[currField];
+                    targetValueParent[`__obsolete__${currField}`] = obsoleteValue;
                     targetValueParent[currField] = {};
                     targetValueParent = targetValueParent[currField];
                 }
@@ -118,16 +117,15 @@ var renameField = function (targetObj, oldName, newName) {
         }
     }
 };
-var updateField = function (originObj, targetObj, originFieldName, targetFieldName, options) {
-    if (options === void 0) { options = {}; }
-    var originFieldHierarchy = originFieldName.split('.');
-    var originFieldExists = false;
-    var originValueParent = originObj;
-    var originValue = undefined;
+const updateField = (originObj, targetObj, originFieldName, targetFieldName, options = {}) => {
+    const originFieldHierarchy = originFieldName.split('.');
+    let originFieldExists = false;
+    let originValueParent = originObj;
+    let originValue = undefined;
     // Establish that the field exists in the origin, and get its value
-    for (var i = 0; i < originFieldHierarchy.length; i++) {
-        var isLast = i === originFieldHierarchy.length - 1;
-        var currField = originFieldHierarchy[i];
+    for (let i = 0; i < originFieldHierarchy.length; i++) {
+        const isLast = i === originFieldHierarchy.length - 1;
+        const currField = originFieldHierarchy[i];
         if (!isLast) {
             if (typeof originValueParent[currField] === 'object') {
                 originValueParent = originValueParent[currField];
@@ -148,12 +146,12 @@ var updateField = function (originObj, targetObj, originFieldName, targetFieldNa
             }
         }
     }
-    var targetFieldHierarchy = targetFieldName.split('.');
+    const targetFieldHierarchy = targetFieldName.split('.');
     if (originFieldExists) {
-        var targetValueParent = targetObj;
-        for (var i = 0; i < targetFieldHierarchy.length; i++) {
-            var isLast = i === targetFieldHierarchy.length - 1;
-            var currField = targetFieldHierarchy[i];
+        let targetValueParent = targetObj;
+        for (let i = 0; i < targetFieldHierarchy.length; i++) {
+            const isLast = i === targetFieldHierarchy.length - 1;
+            const currField = targetFieldHierarchy[i];
             if (!isLast) {
                 if (typeof targetValueParent[currField] === 'undefined') {
                     targetValueParent[currField] = {};
@@ -163,8 +161,8 @@ var updateField = function (originObj, targetObj, originFieldName, targetFieldNa
                     targetValueParent = targetValueParent[currField];
                 }
                 else {
-                    var obsoleteValue = targetValueParent[currField];
-                    targetValueParent["__obsolete__".concat(currField)] = obsoleteValue;
+                    const obsoleteValue = targetValueParent[currField];
+                    targetValueParent[`__obsolete__${currField}`] = obsoleteValue;
                     targetValueParent[currField] = {};
                     targetValueParent = targetValueParent[currField];
                 }
@@ -181,12 +179,12 @@ var updateField = function (originObj, targetObj, originFieldName, targetFieldNa
         }
     }
 };
-var deleteField = function (targetObj, fieldName) {
-    var fieldHierarchy = fieldName.split('.');
-    var targetValueParent = targetObj;
-    for (var i = 0; i < fieldHierarchy.length; i++) {
-        var isLast = i === fieldHierarchy.length - 1;
-        var currField = fieldHierarchy[i];
+const deleteField = (targetObj, fieldName) => {
+    const fieldHierarchy = fieldName.split('.');
+    let targetValueParent = targetObj;
+    for (let i = 0; i < fieldHierarchy.length; i++) {
+        const isLast = i === fieldHierarchy.length - 1;
+        const currField = fieldHierarchy[i];
         if (!isLast) {
             if (typeof targetObj[currField] === 'object') {
                 targetValueParent = targetValueParent[currField];
