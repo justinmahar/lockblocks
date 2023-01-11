@@ -1,15 +1,15 @@
 # Dirs
 .github
+.storybook
 node_modules
 src
-test
+storybook-static
 # Files
 .eslintignore
-.eslintrc.js
+.eslintrc
 .gitattributes
 .gitignore
 .npmignore
-.prettierrc.js
 jest.config.js
 package-lock.json
 tsconfig.json

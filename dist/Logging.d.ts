@@ -1,4 +1,4 @@
-export declare type LogEvent = {
+export type LogEvent = {
     type: LogEventType;
     operation: string;
     message: string;
@@ -9,4 +9,4 @@ export declare enum LogEventType {
     warn = "warn",
     error = "error"
 }
-export declare const logEvent: (events: LogEvent[], type: LogEventType, operation: string, message: string, data?: Record<string, any> | undefined) => LogEvent;
+export declare const logEvent: (events: LogEvent[], type: LogEventType, operation: string, message: string, data?: Record<string, any>) => LogEvent;
