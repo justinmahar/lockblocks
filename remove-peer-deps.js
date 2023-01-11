@@ -1,5 +1,6 @@
+// [lock-all/] 🚫🚫🚫🚫🚫🚫🚫🚫🚫🚫🚫🚫🚫🚫🚫🚫🚫🚫🚫🚫🚫🚫🚫🚫🚫🚫🚫🚫🚫🚫🚫🚫🚫🚫🚫🚫🚫🚫🚫🚫🚫🚫🚫🚫🚫🚫🚫
 // === === === === === === === === === === === === === === === === === ===
-// This JS is executed after running the lockblocks updater via npm update
+// This JS removes all peer dependencies from package.json
 // === === === === === === === === === === === === === === === === === ===
 
 // See: https://www.npmjs.com/package/replace-in-file
