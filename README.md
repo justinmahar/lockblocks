@@ -1,5 +1,6 @@
 <h2 align="center">
-  🟥 LockBlocks
+  🔄 LockBlocks
+ LockBlocks
 </h2>
 <h3 align="center">
   Node.js utility for updating projects created from starters.
