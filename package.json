@@ -1,7 +1,7 @@
 {
   "name": "lockblocks",
   "version": "1.1.7",
-  "coreVersion": "3.0.5",
+  "coreVersion": "3.0.7",
   "author": "Justin Mahar <contact@justinmahar.com>",
   "description": "Node.js utility for updating projects created from starters.",
   "homepage": "https://justinmahar.github.io/lockblocks/",
@@ -72,7 +72,7 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-storybook": "^0.6.15",
     "jest": "^29.7.0",
-    "lockblocks": "^1.1.5",
+    "lockblocks": "^1.1.4",
     "prettier": "^3.2.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

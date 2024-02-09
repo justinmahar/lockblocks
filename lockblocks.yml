@@ -5,9 +5,8 @@ replaceFiles:
   - CODE_OF_CONDUCT.md
   - LICENSE.md
   - lockblocks.yml
-  - MAINTENANCE.md
-  - public/support
   - public/NOTE.md
+  - public/support
   - src/stories/core
 fillFiles: []
 deleteFiles: []
