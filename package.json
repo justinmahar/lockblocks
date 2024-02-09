@@ -1,6 +1,6 @@
 {
   "name": "lockblocks",
-  "version": "1.1.6",
+  "version": "1.1.7",
   "coreVersion": "3.0.5",
   "author": "Justin Mahar <contact@justinmahar.com>",
   "description": "Node.js utility for updating projects created from starters.",
