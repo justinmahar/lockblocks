@@ -142,7 +142,7 @@ With this approach, be sure `.lockblocks` is specified in [`excludePaths`](#excl
 
 ## Usage
 
-See the [Usage Documentation](https://justinmahar.github.io/lockblocks/?path=/story/api-usage--page) for full usage docs.
+See the [Usage Documentation](https://justinmahar.github.io/lockblocks/?path=/story/api-usage--docs) for full usage docs.
 
 ## How It Works
 
